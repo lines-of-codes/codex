@@ -514,6 +514,29 @@ declare_named! {
         ///
         /// > *, †, ‡, §, ¶, ‖, **, ††, ‡‡, §§, ¶¶, ‖‖, ***, †††
         Symbols = "symbol" ("*"),
+
+        /// Decimal positional notation using
+        /// [Thai numerals](https://en.wikipedia.org/wiki/Thai_numerals)
+        ///
+        /// ## Representable Numbers
+        /// All non-negative integers can be represented
+        ///
+        /// ## Example
+        ///
+        /// The first twelve non-negative integers are represented as follows:
+        /// > ๐, ๑, ๒, ๓, ๔, ๕, ๖, ๗, ๘, ๙, ๑๐, ๑๑
+        Thai = "thai" ("๑"),
+
+        /// Thai letters
+        ///
+        /// ## Representable Numbers
+        /// Positive integers up to and including 41 (1—41, Excluding ฃ, ฅ, and ฆ)
+        ///
+        /// ## Example
+        ///
+        /// The first twelve positive integers are represented as follows:
+        /// > ก, ข, ค, ง, จ, ฉ, ช, ซ, ณ, ญ, ฎ, ฏ
+        ThaiLetters = "thai.letter" ("ก"),
     }
 }
 
@@ -868,6 +891,16 @@ impl NamedNumeralSystem {
             ]),
 
             Self::Symbols => NumeralSystem::Symbolic(&["*", "†", "‡", "§", "¶", "‖"]),
+
+            Self::Thai => NumeralSystem::Positional(&[
+                "๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙",
+            ]),
+
+            Self::ThaiLetters => NumeralSystem::Fixed(&[
+                "ก", "ข", "ค", "ง", "จ", "ฉ", "ช", "ซ", "ฌ", "ญ", "ฎ", "ฏ", "ฐ", "ฑ",
+                "ฒ", "ณ", "ด", "ต", "ถ", "ท", "ธ", "น", "บ", "ป", "ผ", "ฝ", "พ", "ฟ",
+                "ภ", "ม", "ย", "ร", "ล", "ว", "ศ", "ษ", "ส", "ห", "ล", "อ", "ฮ",
+            ]),
         }
     }
 }
